@@ -233,8 +233,8 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
 *	Use this to grant yourself webmaster privelages. Should be disabled for security reasons.
 */
 
-//Route::get('/laratrust', function() {
-//	$user = App\User::find(1364926);
+//Route::get('/wm-grant', function() {
+//	$user = App\User::find([YOUR CID HERE]);
 //	$user->attachRole('wm');
 //});
 

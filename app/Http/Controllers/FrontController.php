@@ -255,7 +255,7 @@ class FrontController extends Controller
             $message->to($visit->email)->cc('[DATM EMAIL]');
         });
 
-        return redirect('/')->with('success', 'Thank you for your interest in the ZTL ARTCC! Your visit request has been submitted.');
+        return redirect('/')->with('success', 'Thank you for your interest in our ARTCC! Your visit request has been submitted.');
     }
 
     public function newFeedback() {
