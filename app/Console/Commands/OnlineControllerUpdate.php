@@ -1,5 +1,7 @@
 <?php
 
+//The code on this page is originally by Matt Bozwood-Davies in Laravel 4 and updated by Ian Cowan to work with Laravel 5.
+
 namespace App\Console\Commands;
 
 use App\ATC;

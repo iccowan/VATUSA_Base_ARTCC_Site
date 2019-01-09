@@ -1,5 +1,7 @@
 <?php
 
+//The code on this page is originally by Matt Bozwood-Davies in Laravel 4 and updated by Ian Cowan to work with Laravel 5.
+
 namespace App\Console\Commands;
 
 use App\Airport;
@@ -54,7 +56,7 @@ class FetchMetar extends Command
         $root_tafs = new SimpleXMLElement($response_tafs->getBody());
 
         $i = 0;
-		
+
 		DB::table('airport_weather')->truncate();
         foreach($root_metars->data->children() as $metar) {
 			$airport = new Metar;

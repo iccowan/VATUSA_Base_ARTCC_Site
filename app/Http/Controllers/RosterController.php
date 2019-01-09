@@ -25,6 +25,8 @@ class RosterController extends Controller
         return view('site.roster')->with('hcontrollers', $hcontrollers)->with('vcontrollers', $vcontrollers);
     }
 
+    //The login and logout scripts are originally by Matt Bozwood-Davies in Laravel 4 and updated by Ian Cowan to work with Laravel 5 with some added features.
+
     public function login() {
         if(Auth::check()) {
             return redirect('/')->with('error', 'You are already logged in.');
