@@ -25,7 +25,7 @@ Installation
 
 3. Acquire, initialize, and run npm.
    - `npm install`
-   - `npm run dev`
+   - `npm run prod`
 
 4. Setup the environment (.env) file for your ARTCC following the example (example.env).
 
