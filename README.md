@@ -1,4 +1,4 @@
-VATUSA Website Template v1.0
+VATUSA Website Template v1.1
 ============================
 
 Written in Laravel 5.6, The PHP Framework for Web Artisans
