@@ -91,3 +91,4 @@ Version History
 ---------------
 - 1/07/2019 -> Version 1.0 Released -> Initial release
 - 1/09/2019 -> Version 1.1 Released -> Fixed some minor issues and updated the README
+- 1/09/2019 -> Version 1.2 Released -> Fixed a few more minor issues
