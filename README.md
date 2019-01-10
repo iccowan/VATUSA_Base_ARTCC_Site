@@ -1,4 +1,4 @@
-VATUSA Website Template v1.1
+VATUSA Website Template v1.3
 ============================
 
 Written in Laravel 5.6, The PHP Framework for Web Artisans
@@ -51,6 +51,7 @@ Installation
    - `~/resources/views/layouts/email.blade.php` - Update line 11 with the correct information.
    - `~/resources/views/inc/navbar.blade.php` - Update line 40 with your ARTCC name for the visitor link.
    - `~/resources/views/site/visit.blade.php` - Update lines 11 and 53 with your ARTCC name.
+   - `~/resources/views/site/teamspeak.blade.php` - Update with Teamspeak information.
    - `~/public/photos/Banner.jpg` - Update with a banner photo for the home page.
    - `~/public/photos/logo.png` - Update with your logo.
    - `~/public/photos/xmas_logo.png` - Update with your Christmas logo.
@@ -92,3 +93,4 @@ Version History
 - 1/07/2019 -> Version 1.0 Released -> Initial release
 - 1/09/2019 -> Version 1.1 Released -> Fixed some minor issues and updated the README
 - 1/09/2019 -> Version 1.2 Released -> Fixed a few more minor issues
+- 1/09/2019 -> Version 1.3 Released -> Fixed customization issues and updated README

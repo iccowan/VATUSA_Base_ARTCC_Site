@@ -22,6 +22,7 @@ class VisitRequests extends Migration
             $table->string('home');
             $table->text('reason');
             $table->integer('status');
+			$table->text('reject_reason')->nullable();
             $table->integer('updated_by')->nullable();
             $table->timestamps();
         });
