@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Artisan;
+use Config;
 use App\User;
 use App\Event;
 use App\EventPosition;
@@ -71,7 +72,7 @@ class EventEmails extends Command
                     }
 
                     Mail::send('emails.event_reminder', ['user' => $user, 'event' => $event, 'positions' => $positions], function($message) use ($user){
-                        $message->from('events@notams.ztlartcc.org', 'vZTL ARTCC Events Department')->subject('Upcoming Event Reminder');
+                        $message->from('events@'.Config::Get('artcc.facility_email'), 'v'.Config::get('vatusa.facility').' ARTCC Events Department')->subject('Upcoming Event Reminder');
                         $message->to($user->email);
                     });
                 }

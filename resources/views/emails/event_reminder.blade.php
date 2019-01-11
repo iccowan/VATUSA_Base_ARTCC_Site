@@ -32,9 +32,9 @@
 @endif
 
 <br>
-<p>If you have any questions or concerns, please contact the events coordinator at <a href="mailto:ec@ztlartcc.org">ec@ztlartcc.org</a>.</p>
+<p>If you have any questions or concerns, please contact the events coordinator at <a href="{{ 'mailto:ec@'.\Config::get('facility.email') }}">{{ 'ec@'.\Config::get('facility.email') }}</a>.</p>
 <br>
 
 <p>Sincerely,</p>
-<p>ZTL ARTCC Staff</p>
+<p>{{ Config::get('facility.name_short') }} ARTCC Staff</p>
 @endsection

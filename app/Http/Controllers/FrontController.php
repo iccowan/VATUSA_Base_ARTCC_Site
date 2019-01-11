@@ -13,6 +13,8 @@ use App\Feedback;
 use App\File;
 use App\Http\Controllers\toArray;
 use App\Metar;
+use App\Overflight;
+use App\OverflightUpdate;
 use App\Permission;
 use App\Role;
 use App\Scenery;
@@ -33,25 +35,48 @@ class FrontController extends Controller
 {
     public function home() {
         $atc = ATC::get();
+
         if($atc) {
             $atl_ctr = 0;
             $atl_app = 0;
             $atl_twr = 0;
             $clt_twr = 0;
-            foreach($atc as $a) {
-                $field = substr($a->position, 0, 3);
-                $position = substr($a->position, -3);
-                if($field == '[MAJOR FIELD FAA ID]') {
-                    if($position == 'TWR' || $position == 'GND') {
-                        $atl_twr = 1;
-                    } elseif($position == 'APP' || $position == 'DEP') {
-                        $atl_app = 1;
-                    } elseif($position == 'CTR') {
-                        $atl_ctr = 1;
+            if(Config::get('facility.front_ctr') == Config::get('facility.front_mjr')) {
+                foreach($atc as $a) {
+                    $field = substr($a->position, 0, 3);
+                    $position = substr($a->position, -3);
+                    if($field == Config::get('facility.front_mjr')) {
+                        if($position == 'TWR' || $position == 'GND') {
+                            $atl_twr = 1;
+                        } elseif($position == 'APP' || $position == 'DEP') {
+                            $atl_app = 1;
+                        } elseif($position == 'CTR') {
+                            $atl_ctr = 1;
+                        }
+                    } elseif($field == Config::get('facility.front_mnr')) {
+                        if($position == 'TWR' || $position == 'GND') {
+                            $clt_twr = 1;
+                        }
                     }
-                } elseif($field == '[MINOR FIELD FAA ID]') {
-                    if($position == 'TWR' || $position == 'GND') {
-                        $clt_twr = 1;
+                }
+            } else {
+                foreach($atc as $a) {
+                    $field = substr($a->position, 0, 3);
+                    $position = substr($a->position, -3);
+                    if($field == Config::get('facility_front_ctr')) {
+                        if($position == 'CTR') {
+                            $atl_ctr = 1;
+                        }
+                    } elseif($field == Config::get('facility.front_mjr')) {
+                        if($position == 'TWR' || $position == 'GND') {
+                            $atl_twr = 1;
+                        } elseif($position == 'APP' || $position == 'DEP') {
+                            $atl_app = 1;
+                        }
+                    } elseif($field == Config::get('facility.front_mnr')) {
+                        if($position == 'TWR' || $position == 'GND') {
+                            $clt_twr = 1;
+                        }
                     }
                 }
             }
@@ -87,10 +112,14 @@ class FrontController extends Controller
             return strtotime($e->date);
         });
 
+        $flights = Overflight::where('dep', '!=', '')->where('arr', '!=', '')->take(10)->get();
+        $flights_update = substr(OverflightUpdate::first()->updated_at, -8, 5);
+
         return view('site.home')->with('clt_twr', $clt_twr)->with('atl_twr', $atl_twr)->with('atl_app', $atl_app)->with('atl_ctr', $atl_ctr)
                                 ->with('airports', $airports)->with('metar_last_updated', $metar_last_updated)
                                 ->with('controllers', $controllers)->with('controllers_update', $controllers_update)
-                                ->with('calendar', $calendar)->with('news', $news)->with('events', $events);
+                                ->with('calendar', $calendar)->with('news', $news)->with('events', $events)
+                                ->with('flights', $flights)->with('flights_update', $flights_update);
     }
 
     public function teamspeak() {
@@ -251,8 +280,8 @@ class FrontController extends Controller
         $visit->save();
 
         Mail::send('emails.visit.new', ['visit' => $visit], function($message) use ($visit){
-            $message->from('visitors@[ARTCC EMAIL]', '[ARTCC NAME] Visiting Department')->subject('New Visitor Request Submitted');
-            $message->to($visit->email)->cc('[DATM EMAIL]');
+            $message->from('visitors@'.Config::get('facility.email'), 'v'.Config::get('facility.name_short').' Visiting Department')->subject('New Visitor Request Submitted');
+            $message->to($visit->email)->cc('datm@'.Config::get('facility.email'));
         });
 
         return redirect('/')->with('success', 'Thank you for your interest in our ARTCC! Your visit request has been submitted.');
@@ -324,8 +353,8 @@ class FrontController extends Controller
         $exp = $request->additional_information;
 
         Mail::send('emails.request_staff', ['name' => $name, 'email' => $email, 'org' => $org, 'date' => $date, 'time' => $time, 'exp' => $exp], function($message) use ($email, $name, $date) {
-            $message->from('info@[ARTCC EMAIL]', '[ARTCC NAME] Staffing Requests')->subject('New Staffing Request for '.$date);
-            $message->to('[EC EMAIL]')->replyTo($email, $name);
+            $message->from('info@'.Config::get('facility.email'), Config::get('facility.name_short').' Staffing Requests')->subject('New Staffing Request for '.$date);
+            $message->to('ec@'.Config::get('facility.email'))->replyTo($email, $name);
         });
 
         return redirect('/')->with('success', 'The staffing request has been delivered to the appropiate parties successfully. You should expect to hear back soon.');

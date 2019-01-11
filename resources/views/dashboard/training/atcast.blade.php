@@ -24,7 +24,7 @@ ATCast
             <p><a href="http://media.aero.und.edu/avit.und.edu/a-v/ATCPC10.mp4" target="_blank">Episode 10 - ATIS</a></p>
             <p><a href="http://media.aero.und.edu/avit.und.edu/a-v/ATCPC19_Version_1.mp4" target="_blank">Episode 19 - Ground Control (Part 1)</a></p>
             <p><a href="http://media.aero.und.edu/avit.und.edu/a-v/ATCPC20_v1.mp4" target="_blank">Episode 20 - Ground Control (Part 2)</a></p>
-            <p><a href="http://media.aero.und.edu/avit.und.edu/a-v/ATCPC21_v1.mp4http://media.aero.und.edu/avit.und.edu/a-v/ATCPC20_v1.mp4" target="_blank">Episode 21 - Ground Control (Part 3)</a></p>
+            <p><a href="http://media.aero.und.edu/avit.und.edu/a-v/ATCPC21_v1.mp4" target="_blank">Episode 21 - Ground Control (Part 3)</a></p>
             <p><a href="http://media.aero.und.edu/avit.und.edu/a-v/ATCPC11_Segment%201.mp4" target="_blank">Episode 11 - Runway Incursions (Part 1)</a></p>
             <p><a href="http://media.aero.und.edu/avit.und.edu/a-v/ATCPC11_Segment%202.mp4" target="_blank">Episode 11 - Runway Incursions (Part 2)</a></p>
             <p><a href="http://media.aero.und.edu/avit.und.edu/a-v/ATCPC11_Segment%203.mp4" target="_blank">Episode 11 - Runway Incursions (Part 3)</a></p>
@@ -49,7 +49,6 @@ ATCast
 			<p><a href="http://media.aero.und.edu/avit.und.edu/a-v/ATCPC17.mp4" target="_blank">Episode 17 - Using Speed Adjustments</a></p>
 			<p><a href="http://media.aero.und.edu/avit.und.edu/a-v/ATCPC22.mp4" target="_blank">Episode 22 - Holding</a></p>
             <p><a href="https://youtu.be/4zvlzwMtjdQ" target="_blank">General Approach Airspace Flows</a></p>
-            <p><a href="https://youtu.be/o4N1kljpKkE" target="_blank">A80 Airspace Flows (Major Training)</a></p>
 			<hr>
             <h5><i>Detailed Strip Marking</i></h5>
 			<p><a href="http://media.aero.und.edu/avit.und.edu/a-v/SMT03_Local%20Control.mp4" target="_blank">Strip Marking - Tutorial Local Control</a></p>

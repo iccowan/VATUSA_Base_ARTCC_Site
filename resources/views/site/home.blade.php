@@ -10,29 +10,29 @@ Home
         <div class="jumbotron">
             <div class="row">
                 <div class="col-sm-8">
-                    <h1><b>[ARTCC NAME]</b></h1>
-                    <h5>Welcome to the [ARTCC NAME] website. This website is for a group of online hobbyists who partake in simulated flying and air traffic control on the VATSIM network. The procedures we use mirror, to an extent, those utilized by real world air traffic control. At no time, however, should a procedure, chart, or other information contained on this website be used for real world navigation.</h5>
+                    <h1><b>{{ \Config::get('facility.name_long') }}</b></h1>
+                    <h5>Welcome to the v{{ \Config::get('facility.name_short') }} website. This website is for a group of online hobbyists who partake in simulated flying and air traffic control on the VATSIM network. The procedures we use mirror, to an extent, those utilized by real world air traffic control. At no time, however, should a procedure, chart, or other information contained on this website be used for real world navigation.</h5>
                 </div>
                 <div class="col-sm-4">
                     @if($atl_ctr === 1)
-                        <div class="alert alert-success">[MAJOR FIELD/CENTER NAME] Center is ONLINE</div>
+                        <div class="alert alert-success">{{ \Config::get('facility.front_ctr_d') }} Center is ONLINE</div>
                     @else
-                        <div class="alert alert-danger">[MAJOR FIELD/CENTER NAME] Center is OFFLINE</div>
+                        <div class="alert alert-danger">{{ \Config::get('facility.front_ctr_d') }} Center is OFFLINE</div>
                     @endif
                     @if($atl_app === 1)
-                        <div class="alert alert-success">[MAJOR/LARGE TRACON NAME] TRACON is ONLINE</div>
+                        <div class="alert alert-success">{{ \Config::get('facility.front_mjr_d') }} Approach is ONLINE</div>
                     @else
-                        <div class="alert alert-danger">[MAJOR/LARGE TRACON NAME] TRACON is OFFLINE</div>
+                        <div class="alert alert-danger">{{ \Config::get('facility.front_mjr_d') }} Approach is OFFLINE</div>
                     @endif
                     @if($atl_twr === 1)
-                        <div class="alert alert-success">[MAJOR FIELD NAME] ATCT is ONLINE</div>
+                        <div class="alert alert-success">{{ \Config::get('facility.front_mjr_d') }} ATCT is ONLINE</div>
                     @else
-                        <div class="alert alert-danger">[MAJOR FIELD NAME] ATCT is OFFLINE</div>
+                        <div class="alert alert-danger">{{ \Config::get('facility.front_mjr_d') }} ATCT is OFFLINE</div>
                     @endif
                     @if($clt_twr === 1)
-                        <div class="alert alert-success">[MINOR FIELD NAME] ATCT is ONLINE</div>
+                        <div class="alert alert-success">{{ \Config::get('facility.front_mnr_d') }} ATCT is ONLINE</div>
                     @else
-                        <div class="alert alert-danger">[MINOR FIELD NAME] ATCT is OFFLINE</div>
+                        <div class="alert alert-danger">{{ \Config::get('facility.front_mnr_d') }} ATCT is OFFLINE</div>
                     @endif
                 </div>
             </div>
@@ -142,6 +142,41 @@ Home
                 </table>
             </div>
         </div>
+    </div>
+    <hr>
+    <center><h4><i class="fa fa-plane"></i> Flights Currently Within {{ \Config::get('facility.name_short') }} Airspace</h4></center>
+    <div class="table">
+        <table class="table table-bordered table-sm">
+            <thead>
+                <th scope="col"><center>Callsign</center></th>
+                <th scope="col"><center>Pilot Name</center></th>
+                <th scope="col"><center>Aircraft Type</center></th>
+                <th scope="col"><center>Departure</center></th>
+                <th scope="col"><center>Arrival</center></th>
+                <th scope="col"><center>Route</center></th>
+            </thead>
+            <tbody>
+                @if($flights->count() > 0)
+                    @foreach($flights as $c)
+                        <tr>
+                            <td><center>{{ $c->callsign }}</center></td>
+                            <td><center>{{ $c->pilot_name }}</center></td>
+                            <td><center>{{ $c->type }}</center></td>
+                            <td><center>{{ $c->dep }}</center></td>
+                            <td><center>{{ $c->arr }}</center></td>
+                            <td><center>{{ str_limit($c->route, 50) }}</center></td>
+                        </tr>
+                    @endforeach
+                @else
+                    <tr>
+                        <td colspan="6"><center><i>No Pilots in {{ \Config::get('facility.name_short') }} Airspace</i></center></td>
+                    </tr>
+                @endif
+                <tr>
+                    <td colspan="6"><div align="right"><i class="fas fa-sync-alt fa-spin"></i> Last Updated {{ $flights_update }}Z</div></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 @endsection

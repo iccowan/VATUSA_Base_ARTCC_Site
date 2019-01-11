@@ -2,11 +2,11 @@
     <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical" style="margin-left:20px;">
         <div class="dropdown-divider"></div>
         <p class="collapsible-controllers" style="margin-left:-20px; cursor:pointer">
-            [ARTCC NAME] CONTROLLERS
+            {{ \Config::get('facility.name_short') }} CONTROLLERS
             <b id="caret-controllers" class="float-right fas fa-caret-left"></b>
         </p>
         <div class="content">
-            @if(Auth::user()->rating_id == 1)
+            @if(Auth::user()->rating_id == 1 && \Config::get('facility.teamspeak') == 1)
                 <a class="nav-link {{ Nav::urlDoesContain('dashboard/controllers/teamspeak') }}" href="/dashboard/controllers/teamspeak">Teamspeak Information</a>
             @endif
             <a class="nav-link {{ Nav::urlDoesContain('dashboard/controllers/roster') }} {{ Nav::urlDoesContain('/dashboard/admin/roster') }}" href="/dashboard/controllers/roster">Roster</a>
@@ -27,10 +27,10 @@
                 <b id="caret-train" class="float-right fas fa-caret-left"></b>
             </p>
             <div class="content">
-                [UPDATE WITH SETMORE SCRIPT]<script id="setmore_script" type="text/javascript" src="https://my.setmore.com/webapp/js/src/others/setmore_iframe.js"></script><a id="Setmore_button_iframe"  class="nav-link" href="https://my.setmore.com">Schedule a Training Session</a>
+                <script id="setmore_script" type="text/javascript" src="https://my.setmore.com/webapp/js/src/others/setmore_iframe.js"></script><a id="Setmore_button_iframe"  class="nav-link" href="https://my.setmore.com/bookingpage/{{ \Config::get('facility.setmore') }}">Schedule a Training Session</a>
                 <a class="nav-link {{ Nav::urlDoesContain('/dashboard/training/atcast') }}" href="/dashboard/training/atcast">ATCast Videos</a>
                 @if(Auth::user()->can('train'))
-                    <a class="nav-link {{ Nav::urlDoesContain('dashboard/training/files') }}" href="/dashboard/training/info">Training Information</a>
+                    <a class="nav-link {{ Nav::urlDoesContain('dashboard/training/info') }}" href="/dashboard/training/info">Training Information</a>
                     <a class="nav-link {{ Nav::urlDoesContain('dashboard/training/tickets') }}" href="/dashboard/training/tickets">Training Tickets</a>
                     <a class="nav-link" href="https://my.setmore.com/" target="_blank">Schedule Management</a>
                     @if(Auth::user()->hasRole('ins') || Auth::user()->can('snrStaff'))
@@ -57,7 +57,7 @@
                     <a class="nav-link {{ Nav::urlDoesContain('dashboard/admin/feedback') }}" href="/dashboard/admin/feedback">Feedback Management</a>
                 @endif
                 @if(Auth::user()->can('email'))
-                    <a class="nav-link" href="[LINK TO ARTCC EMAIL]" target="_blank">Email</a>
+                    <a class="nav-link" href="{{ \Config::get('facility.email_login') }}" target="_blank">Email</a>
                     <a class="nav-link {{ Nav::urlDoesContain('dashboard/admin/email/send') }}" href="/dashboard/admin/email/send">Send New Email</a>
                 @endif
                 @if(Auth::user()->can('staff'))

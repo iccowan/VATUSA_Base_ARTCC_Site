@@ -17,7 +17,7 @@ Staff
 <div class="container">
     <div class="block-heading-two">
         <h4>
-            Air Traffic Manager - 
+            Air Traffic Manager -
             @if($atm == '[]')
                 <i>Vacant</i>
             @else
@@ -25,14 +25,14 @@ Staff
                     {{ $s->full_name }}
                 @endforeach
             @endif
-            &nbsp;<a href="mailto:atm@ztlartcc.org" style="color:black"><i class="fa fa-envelope" ></i></a>
+            &nbsp;<a href="{{ 'mailto:atm@'.\Config::get('facility.email') }}" style="color:black"><i class="fa fa-envelope" ></i></a>
         </h4>
         <p>The Air Traffic Manager is responsible to the VATUSA Southern Region Director for the overall administration of the ARTCC. The ATM is responsible for appointing ARTCC staff members and delegation of authorities.</p>
     </div>
     <hr>
     <div class="block-heading-two">
         <h4>
-            Deputy Air Traffic Manager - 
+            Deputy Air Traffic Manager -
             @if($datm == '[]')
                 <i>Vacant</i>
             @else
@@ -40,14 +40,14 @@ Staff
                     {{ $s->full_name }}
                 @endforeach
             @endif
-            &nbsp;<a href="mailto:datm@ztlartcc.org" style="color:black"><i class="fa fa-envelope" ></i></a>
+            &nbsp;<a href="{{ 'mailto:datm@'.\Config::get('facility.email') }}" style="color:black"><i class="fa fa-envelope" ></i></a>
         </h4>
         <p>The Deputy Air Traffic Manager reports to the Air Traffic Manager and acts as Air Traffic Manager in their absence. The Deputy Air Traffic Manager is jointly responsible for administration and accuracy of the roster including visiting controllers.</p>
     </div>
     <hr>
     <div class="block-heading-two">
         <h4>
-            Training Administrator - 
+            Training Administrator -
             @if($ta == '[]')
                 <i>Vacant</i>
             @else
@@ -55,7 +55,7 @@ Staff
                     {{ $s->full_name }}
                 @endforeach
             @endif
-            &nbsp;<a href="mailto:ta@ztlartcc.org" style="color:black"><i class="fa fa-envelope" ></i></a>
+            &nbsp;<a href="{{ 'mailto:ta@'.\Config::get('facility.email') }}" style="color:black"><i class="fa fa-envelope" ></i></a>
         </h4>
         <p>The Training Administrator works with the Air Traffic Manager and Deputy Air Traffic Manager to build training programmes, establish training procedures and recommend instructors and mentors. The Training Administrator works with Instructors and Mentors to develop knowledge and mentors to help develop teaching ability.</p>
     </div>
@@ -63,7 +63,7 @@ Staff
     @if($ata != '[]')
         <div class="block-heading-two">
             <h4>
-                Assistant Training Administrator - 
+                Assistant Training Administrator -
                 @if($ata == '[]')
                     <i>Vacant</i>
                 @else
@@ -77,7 +77,7 @@ Staff
     @endif
     <div class="block-heading-two">
         <h4>
-            Webmaster - 
+            Webmaster -
             @if($wm == '[]')
                 <i>Vacant</i>
             @else
@@ -85,7 +85,7 @@ Staff
                     {{ $s->full_name }}
                 @endforeach
             @endif
-            &nbsp;<a href="mailto:wm@ztlartcc.org" style="color:black"><i class="fa fa-envelope" ></i></a>
+            &nbsp;<a href="{{ 'mailto:wm@'.\Config::get('facility.email') }}" style="color:black"><i class="fa fa-envelope" ></i></a>
         </h4>
         <p>Responsible to the Air Traffic Manager for the operation and maintenance of all IT services including, but not limited to, the Website, Teamspeak and Email services and any other tasking as directed.</p>
     </div>
@@ -93,7 +93,7 @@ Staff
     @if($awm != '[]')
         <div class="block-heading-two">
             <h4>
-                Assistant Webmaster - 
+                Assistant Webmaster -
                 @if($awm == '[]')
                     <i>Vacant</i>
                 @else
@@ -107,7 +107,7 @@ Staff
     @endif
     <div class="block-heading-two">
         <h4>
-            Events Coordinator - 
+            Events Coordinator -
             @if($ec == '[]')
                 <i>Vacant</i>
             @else
@@ -115,7 +115,7 @@ Staff
                     {{ $s->full_name }}
                 @endforeach
             @endif
-            &nbsp;<a href="mailto:ec@ztlartcc.org" style="color:black"><i class="fa fa-envelope" ></i></a>
+            &nbsp;<a href="{{ 'mailto:ec@'.\Config::get('facility.email') }}" style="color:black"><i class="fa fa-envelope" ></i></a>
         </h4>
         <p>The Events Coordinator is responsible to the Deputy Air Traffic Manager for the coordination, planning, dissemination and creation of events to neighboring facilities, virtual airlines, VATUSA and VATSIM.</p>
     </div>
@@ -123,7 +123,7 @@ Staff
     @if($aec != '[]')
         <div class="block-heading-two">
             <h4>
-                Assistant Events Coordinator - 
+                Assistant Events Coordinator -
                 @if($aec == '[]')
                     <i>Vacant</i>
                 @else
@@ -137,7 +137,7 @@ Staff
     @endif
     <div class="block-heading-two">
         <h4>
-            Facility Engineer - 
+            Facility Engineer -
             @if($fe == '[]')
                 <i>Vacant</i>
             @else
@@ -145,7 +145,7 @@ Staff
                     {{ $s->full_name }}
                 @endforeach
             @endif
-            &nbsp;<a href="mailto:fe@ztlartcc.org" style="color:black"><i class="fa fa-envelope" ></i></a>
+            &nbsp;<a href="{{ 'mailto:fe@'.\Config::get('facility.email') }}" style="color:black"><i class="fa fa-envelope" ></i></a>
         </h4>
         <p>The Facility Engineer is responsible to the Senior Staff for creation of sector files, radar client files, training scenarios, Letters of Agreement, Memorandums of Understanding, Standard Operating Procedures and other requests as directed and submission to the Air Traffic Manager for approval prior to dissemination.</p>
     </div>
@@ -153,7 +153,7 @@ Staff
     @if($afe != '[]')
         <div class="block-heading-two">
             <h4>
-                Assistant Facility Engineer - 
+                Assistant Facility Engineer -
                 @if($afe == '[]')
                     <i>Vacant</i>
                 @else

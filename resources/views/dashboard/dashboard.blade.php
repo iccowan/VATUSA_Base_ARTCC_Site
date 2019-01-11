@@ -24,8 +24,8 @@ Dashboard
     <div class="row">
         <div class="col-sm-3">
             <div class="card card-body" style="background-color:lightgrey">
-                <center><h5>Derek Time Now:</h5></center>
-                <center><iframe style="pointer-events: none" src="https://freesecure.timeanddate.com/clock/i6hnccu7/n236/fs16/tct/pct/bas6/bat6/bac777/pa8/tt0/tm2/th1/ta1/tb4" frameborder="0" width="200" height="64" allowTransparency="true"></iframe></center>
+                <center><h5>Pacific Time Now:</h5></center>
+                <center><iframe style="pointer-events: none" src="https://freesecure.timeanddate.com/clock/i6hnccu7/n137/fs16/tct/pct/bas6/bat6/bac777/pa8/tt0/tm2/th1/ta1/tb4" frameborder="0" width="200" height="64" allowTransparency="true"></iframe></center>
             </div>
         </div>
         <div class="col-sm-3">
@@ -59,9 +59,9 @@ Dashboard
             @endif
         </div>
         <div class="col-sm-3">
-            <script id="setmore_script" type="text/javascript" src="https://my.setmore.com/webapp/js/src/others/setmore_iframe.js"></script><a id="Setmore_button_iframe"  class="btn btn-secondary btn-block" href="https://my.setmore.com/bookingpage/3598990c-a847-4107-81eb-de1794648684">Schedule a Training Session</a>
+            <script id="setmore_script" type="text/javascript" src="https://my.setmore.com/webapp/js/src/others/setmore_iframe.js"></script><a id="Setmore_button_iframe"  class="btn btn-secondary btn-block" href="https://my.setmore.com/bookingpage/{{ \Config::get('facility.setmore') }}">Schedule a Training Session</a>
             @if(Auth::user()->can('staff'))
-                <a class="btn btn-secondary btn-block" href="http://mail.ztlartcc.org" target="_blank">Email</a>
+                <a class="btn btn-secondary btn-block" href="{{ \Config::get('facility.email_login') }}" target="_blank">Email</a>
             @endif
         </div>
         <div class="col-sm-3">
@@ -146,6 +146,41 @@ Dashboard
                 @endif
                 <tr>
                     <td colspan="6"><div align="right"><i class="fas fa-sync-alt fa-spin"></i> Last Updated {{ $controllers_update }}Z</div></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <hr>
+    <center><h4><i class="fa fa-plane"></i> Flights Currently Within {{ Config::get('facility.name_short') }} Airspace</h4></center>
+    <div class="table">
+        <table class="table table-bordered table-sm">
+            <thead>
+                <th scope="col"><center>Callsign</center></th>
+                <th scope="col"><center>Pilot Name</center></th>
+                <th scope="col"><center>Aircraft Type</center></th>
+                <th scope="col"><center>Departure</center></th>
+                <th scope="col"><center>Arrival</center></th>
+                <th scope="col"><center>Route</center></th>
+            </thead>
+            <tbody>
+                @if($flights->count() > 0)
+                    @foreach($flights as $c)
+                        <tr>
+                            <td><center>{{ $c->callsign }}</center></td>
+                            <td><center>{{ $c->pilot_name }}</center></td>
+                            <td><center>{{ $c->type }}</center></td>
+                            <td><center>{{ $c->dep }}</center></td>
+                            <td><center>{{ $c->arr }}</center></td>
+                            <td><center>{{ str_limit($c->route, 50) }}</center></td>
+                        </tr>
+                    @endforeach
+                @else
+                    <tr>
+                        <td colspan="6"><center><i>No Pilots in {{ Config::get('facility.name_short') }} Airspace</i></center></td>
+                    </tr>
+                @endif
+                <tr>
+                    <td colspan="6"><div align="right"><i class="fas fa-sync-alt fa-spin"></i> Last Updated {{ $flights_update }}Z</div></td>
                 </tr>
             </tbody>
         </table>

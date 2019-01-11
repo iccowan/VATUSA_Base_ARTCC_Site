@@ -8,6 +8,7 @@ use App\ATC;
 use App\ControllerLog;
 use App\ControllerLogUpdate;
 use Carbon\Carbon;
+use Config;
 use DB;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -31,17 +32,6 @@ class OnlineControllerUpdate extends Command
 
     protected $statusUrl = "http://status.vatsim.net/status.txt";
 
-    protected $facilities = [
-		/* BRAVO */
-		'ATL','CLT',
-		/* CHARLIE */
-		'BHM','GSP','AVL','GSO','TYS','CHA','FTY','RYY','AHN',
-		/* DELTA */
-		'AGS','GMU','GYH','TCL','MXF','MGM','LSF','CSG','MCN','WRB','JQF','VUJ','INT','TRI','LZU','ASN','HKY','PDK',
-		/* OBSERVER */
-		'ZTL'
-	];
-
     /**
      * Create a new command instance.
      *
@@ -59,6 +49,12 @@ class OnlineControllerUpdate extends Command
      */
     public function handle()
     {
+        if(Config::get('facility.enroute') != null) {
+            $facilities = [ Config::get('facility.all_fields').', '.Config::Get('facility.enroute') ];
+        } else {
+            $facilities = [ Config::get('facility.all_fields') ];
+        }
+
 		$statsData = $this->getStatsData();
 		$last_update_log = ControllerLogUpdate::get()->first();
 		$last_update = $last_update_log->created_at;
@@ -95,7 +91,7 @@ class OnlineControllerUpdate extends Command
 				$is_controller = $clienttype == "ATC" && strpos($position, "OBS") === false && $rating != '1' && $facilitytype != '0' && strpos($position, "SAVF") === false && strpos($position, "SAVC") === false;
 				if (!$is_controller) continue;
 
-				foreach ($this->facilities as $facility)
+				foreach ($facilities as $facility)
 				{
 					$is_controller = strpos($position, $facility) === 0;
 					if ($is_controller) break;

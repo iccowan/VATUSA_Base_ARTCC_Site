@@ -340,8 +340,8 @@ class AdminDash extends Controller
         $visitor->save();
 
         Mail::send('emails.visit.accept', ['visitor' => $visitor], function($message) use ($visitor){
-            $message->from('visitors@[ARTCC EMAIL]', '[ARTCC NAME] Visiting Department')->subject('Visitor Request Accepted');
-            $message->to($visitor->email)->cc('[DATM EMAIL]');
+            $message->from('visitors@'.Config::get('facility.email'), 'v'.Config::get('facility.name_short').' Visiting Department')->subject('Visitor Request Accepted');
+            $message->to($visitor->email)->cc('datm@'.Config::get('facility.email'));
         });
 
         $parts = explode(" ",$visitor->name);
@@ -646,8 +646,8 @@ class AdminDash extends Controller
         $visitor->save();
 
         Mail::send(['html' => 'emails.visit.reject'], ['visitor' => $visitor], function($message) use ($visitor) {
-            $message->from('visitors@[ARTCC EMAIL]', '[ARTCC NAME] Visiting Department')->subject('Visitor Request Rejected');
-            $message->to($visitor->email)->cc('[DATM EMAIL]');
+            $message->from('visitors@'.Config::get('facility.email'), 'v'.Config::get('facility.name_short').' Visiting Department')->subject('Visitor Request Rejected');
+            $message->to($visitor->email)->cc('datm@'.Config::get('facility.email'));
         });
 
         return redirect('/dashboard/admin/roster/visit/requests')->with('success', 'The visit request has been rejected successfully.');
@@ -833,7 +833,7 @@ class AdminDash extends Controller
         $controller = User::find($feedback->controller_id);
 
         Mail::send(['html' => 'emails.new_feedback'], ['feedback' => $feedback, 'controller' => $controller], function($m) use ($feedback, $controller) {
-            $m->from('feedback@[ARTCC EMAIL]', '[ARTCC NAME] Feedback Department');
+            $m->from('feedback@'.Config::get('facility.email'), 'v'.Config::get('facility.name_short').' Feedback Department');
             $m->subject('You Have New Feedback!');
             $m->to($controller->email);
         });
@@ -881,7 +881,7 @@ class AdminDash extends Controller
         $sender = Auth::user();
 
         Mail::send('emails.feedback_email', ['feedback' => $feedback, 'body' => $body, 'sender' => $sender], function($m) use ($feedback, $subject, $replyTo, $replyToName) {
-            $m->from('feedback@[ARTCC EMAIL]', '[ARTCC NAME] Feedback Department')->replyTo($replyTo, $replyToName);
+            $m->from('feedback@'.Config::get('facility.email'), 'v'.Config::get('facility.facility_short').' Feedback Department')->replyTo($replyTo, $replyToName);
             $m->subject($subject);
             $m->to($feedback->pilot_email);
         });
@@ -959,15 +959,15 @@ class AdminDash extends Controller
         //Sends to all recipients
         foreach($emails as $e){
             Mail::send(['html' => 'emails.send'], ['sender' => $sender, 'body' => $body], function ($m) use ($name, $subject, $e, $reply_to) {
-                $m->from('info@[ARTCC EMAIL]', $name)->replyTo($reply_to, $name);
-                $m->subject('[ARTCC NAME (IN FRONT OF SUBJECT)] '.$subject);
+                $m->from('info@'.Config::get('facility.email'), $name)->replyTo($reply_to, $name);
+                $m->subject('['.Config::get('facility.name_long').'] '.$subject);
                 $m->to($e);
             });
         }
         //Copies to the sender
         Mail::send(['html' => 'emails.send'], ['sender' => $sender, 'body' => $body], function ($m) use ($name, $subject, $sender, $reply_to) {
-            $m->from('info@[ARTCC EMAIL]', $name)->replyTo($reply_to, $name);
-            $m->subject('[ARTCC NAME (IN FRONT OF SUBJECT)] '.$subject);
+            $m->from('info@'.Config::get('facility.email'), $name)->replyTo($reply_to, $name);
+            $m->subject('['.Config::get('facility.name_long').'] '.$subject);
             $m->to($sender->email);
         });
 

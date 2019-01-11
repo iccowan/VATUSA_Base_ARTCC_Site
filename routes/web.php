@@ -221,7 +221,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
 
 /*
 *   Cron Jobs
-*   URL: https://ztlv2.team-stringer.com/cron-job/run?j=[Cron Job]&t=[Token]
+*   URL: https://[ARTCC_URL]/cron-job/run?j=[Cron Job]&t=[Token]
 */
 //Route::get('/cron-job/run', 'CronController@index');
 /*

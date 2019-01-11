@@ -5,8 +5,8 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="For entertainment purposes only. Do not use for real world purposes. Part of the VATSIM Network.">
-        <meta name="keywords" content="vatusa,vatsim,center,artcc,aviation,airplane,airport,controller,atc,air,traffic,control,pilot">
+        <meta name="description" content="v{{ \Config::get('facility.name_short') }} ARTCC. For entertainment purposes only. Do not use for real world purposes. Part of the VATSIM Network.">
+        <meta name="keywords" content="{{ \Config::get('facility.name_short') }},vatusa,vatsim,center,artcc,aviation,airplane,airport,controller,atc,air,traffic,control,pilot">
         <meta name="author" content="Ian Cowan">
 
         {{-- Stylesheets --}}
@@ -40,7 +40,7 @@
 
         {{-- Title --}}
         <title>
-            @yield('title') | [ARTCC NAME] ARTCC
+            @yield('title') | {{ \Config::get('facility.name_short') }} ARTCC
         </title>
     </head>
     <body>

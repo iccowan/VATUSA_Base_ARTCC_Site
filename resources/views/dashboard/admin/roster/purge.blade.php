@@ -60,7 +60,7 @@ if ($month == 12) { $nm = 1; $nyr = $year + 1; } else { $nm = $month + 1; $nyr =
                         <tr>
                             <td><a href="/dashboard/admin/roster/edit/{{ $c->id }}">{{ $c->backwards_name }} ({{ $c->id }})</a></td>
                             <td>{{ $c->rating_short }}</td>
-                            @if($stats[$c->id]->total_hrs >= 3)
+                            @if($stats[$c->id]->total_hrs >= \Config::get('facility.h_hours'))
                                 <td bgcolor="#A9DFBF" class="black"><b>{{ $stats[$c->id]->total_hrs }}</b></td>
                             @else
                                 <td bgcolor="#E6B0AA" class="black"><b>{{ $stats[$c->id]->total_hrs }}</b></td>
@@ -69,7 +69,7 @@ if ($month == 12) { $nm = 1; $nyr = $year + 1; } else { $nm = $month + 1; $nyr =
                                 @if($c->last_training)
                                     <p>{{ $c->last_training }}</p>
                                 @else
-                                    <p><i>No Training Since 12/25/2018</i></p>
+                                    <p><i>No Training Since</i></p>
                                 @endif
                             </td>
                         </tr>
@@ -91,7 +91,7 @@ if ($month == 12) { $nm = 1; $nyr = $year + 1; } else { $nm = $month + 1; $nyr =
                         <tr>
                             <td><a href="/dashboard/admin/roster/edit/{{ $c->id }}">{{ $c->backwards_name }} ({{ $c->id }})</a></td>
                             <td>{{ $c->rating_short }}</td>
-                            @if($stats[$c->id]->total_hrs >= 2)
+                            @if($stats[$c->id]->total_hrs >= \Config::get('facility.v_hours'))
                                 <td bgcolor="#A9DFBF" class="black"><b>{{ $stats[$c->id]->total_hrs }}</b></td>
                             @else
                                 <td bgcolor="#E6B0AA" class="black"><b>{{ $stats[$c->id]->total_hrs }}</b></td>
@@ -126,7 +126,7 @@ if ($month == 12) { $nm = 1; $nyr = $year + 1; } else { $nm = $month + 1; $nyr =
                                 @if($c->last_training_given)
                                     <p>{{ $c->last_training_given }}</p>
                                 @else
-                                    <p><i>No Training Given Since 12/25/2018</i></p>
+                                    <p><i>No Training Given</i></p>
                                 @endif
                             </td>
                         </tr>

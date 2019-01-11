@@ -79,10 +79,10 @@
                 {!! Form::open(['action' => 'ControllerDash@optIn']) !!}
                     <div class="form-group">
                         {!! Form::checkbox('opt', '1', false) !!}
-                        {!! Form::label('opt', 'I agree to recieve mass emails from the vZTL ARTCC.', ['class' => 'form-label']) !!}
+                        {!! Form::label('opt', 'I agree to recieve mass emails from the v'.\Config::get('facility.name_short').' ARTCC.', ['class' => 'form-label']) !!}
                         <br>
                         {!! Form::checkbox('privacy', '1', false) !!}
-                        {!! Form::label('privacy', 'I have read and agree to the vZTL ARTCC Privacy Policy.', ['class' => 'form-label']) !!}
+                        {!! Form::label('privacy', 'I have read and agree to the v'.\Config::get('facility.name_short').' ARTCC Privacy Policy.', ['class' => 'form-label']) !!}
                     </div>
             </div>
             <div class="modal-footer">
