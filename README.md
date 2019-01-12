@@ -23,7 +23,7 @@ Installation
 2. Acquire the composer dependencies.
    - `composer install`
 
-3. Acquire, initialize, and run npm.
+3. Acquire, initialize, and run npm (see below if errors are returned while running).
    - `npm install`
    - `npm run prod`
 
@@ -53,6 +53,17 @@ Installation
 Troubleshooting
 ---------------
 All questions can be directed to [wm@ztlartcc.org](mailto:wm@ztlartcc.org). The documentation for this version of laravel can be found at [https://laravel.com/docs/5.6](https://laravel.com/docs/5.6).
+
+- If npm is erroring when running either `npm install` or `npm run prod`, try the following:
+  - Make sure npm is up-to-date
+  - Run the following commands to make sure pngquant is installed:
+    - `npm install imagemin-pngquant@5.0.1 --save`
+    - `npm install pngquant-bin@3.1.1 --save`
+- This should fix the problem but if you're still getting an error, try the following commands to reset npm within the project:
+  - `rm -rf node_modules`
+  - `rm package-lock.json yarn.lock`
+  - `npm cache clear --force`
+  - `npm install`
 
 Usage
 -----

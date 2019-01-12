@@ -19,7 +19,7 @@
     "popper.js": "^1.12",
     "vue": "^2.5.17"
   },
-  "name": "ztl-v2",
+  "name": "VATUSA_Base_ARTCC_Site",
   "description": "## Contributers: - Ian Cowan",
   "version": "1.0.0",
   "main": "webpack.mix.js",
@@ -33,12 +33,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iccowan/ztl-v2.git"
+    "url": "git+https://github.com/iccowan/VATUSA_Base_ARTCC_Site"
   },
   "author": "Ian Cowan",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/iccowan/ztl-v2/issues"
+    "url": "https://github.com/iccowan/VATUSA_Base_ARTCC_Site/issues"
   },
-  "homepage": "https://github.com/iccowan/ztl-v2#readme"
+  "homepage": "https://github.com/iccowan/VATUSA_Base_ARTCC_Site#readme",
+  "resolutions": {
+    "image-webpack-loader/imagemin-pngquant": "5.0.1"
+  }
 }
