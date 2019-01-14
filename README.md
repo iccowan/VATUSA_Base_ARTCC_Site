@@ -1,4 +1,4 @@
-VATUSA Website Template v2.0
+VATUSA Website Template v2.1
 ============================
 
 Written in Laravel 5.6, The PHP Framework for Web Artisans
@@ -76,3 +76,4 @@ Version History
 - 1/09/2019 -> Version 1.2 Released -> Fixed a few more minor issues
 - 1/09/2019 -> Version 1.3 Released -> Fixed customization issues and updated README
 - 1/10/2019 -> Version 2.0 Released -> Added flights within ARTCC boundaries; added customizations to the .env file and updated the README; simplified installation immensely
+- 1/13/2019 -> Version 2.1 Released -> Added website activity audits
