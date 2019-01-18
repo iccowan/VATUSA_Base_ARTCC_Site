@@ -186,12 +186,20 @@ class FrontController extends Controller
         }
 
         $client = new Client(['http_errors' => false]);
-        $res = $client->request('GET', 'https://api.aircharts.org/v2/Airport/'.$apt_r);
+        $res = $client->request('GET', 'https://api.aviationapi.com/v1/charts?apt='.$apt_r);
         $status = $res->getStatusCode();
         if($status == 404) {
             $charts = null;
-        } elseif(isset(json_decode($res->getBody())->$apt_r->charts) == true) {
-            $charts = json_decode($res->getBody())->$apt_r->charts;
+        } elseif(json_decode($res->getBody()) != '[]') {
+            $charts = collect(json_decode($res->getBody()));
+            $min = $charts->where('chart_code', 'MIN');
+            $hot = $charts->where('chart_code', 'HOT');
+            $lah = $charts->where('chart_code', 'LAH');
+            $apd = $charts->where('chart_code', 'APD');
+            $iap = $charts->where('chart_code', 'IAP');
+            $dp = $charts->where('chart_code', 'DP');
+            $star = $charts->where('chart_code', 'STAR');
+            $cvfp = $charts->where('chart_code', 'CVFP');
         } else {
             $charts = null;
         }
