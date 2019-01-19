@@ -1,4 +1,4 @@
-VATUSA Website Template v2.0
+VATUSA Website Template v2.1
 ============================
 
 Written in Laravel 5.6, The PHP Framework for Web Artisans
@@ -23,7 +23,7 @@ Installation
 2. Acquire the composer dependencies.
    - `composer install`
 
-3. Acquire, initialize, and run npm.
+3. Acquire, initialize, and run npm (see below if errors are returned while running).
    - `npm install`
    - `npm run prod`
 
@@ -54,6 +54,17 @@ Troubleshooting
 ---------------
 All questions can be directed to [wm@ztlartcc.org](mailto:wm@ztlartcc.org). The documentation for this version of laravel can be found at [https://laravel.com/docs/5.6](https://laravel.com/docs/5.6).
 
+- If npm is erroring when running either `npm install` or `npm run prod`, try the following:
+  - Make sure npm is up-to-date
+  - Run the following commands to make sure pngquant is installed:
+    - `npm install imagemin-pngquant@5.0.1 --save`
+    - `npm install pngquant-bin@3.1.1 --save`
+- This should fix the problem but if you're still getting an error, try the following commands to reset npm within the project:
+  - `rm -rf node_modules`
+  - `rm package-lock.json yarn.lock`
+  - `npm cache clear --force`
+  - `npm install`
+
 Usage
 -----
 This was created for the use by the ZTL ARTCC and has been made available to the public. Please do not remove the author meta tag in the master layout view. Other than that, feel free to make changes to any part of the website you wish. Enjoy!
@@ -65,3 +76,4 @@ Version History
 - 1/09/2019 -> Version 1.2 Released -> Fixed a few more minor issues
 - 1/09/2019 -> Version 1.3 Released -> Fixed customization issues and updated README
 - 1/10/2019 -> Version 2.0 Released -> Added flights within ARTCC boundaries; added customizations to the .env file and updated the README; simplified installation immensely
+- 1/13/2019 -> Version 2.1 Released -> Added website activity audits
