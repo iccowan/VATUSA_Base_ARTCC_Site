@@ -50,9 +50,16 @@ class OnlineControllerUpdate extends Command
     public function handle()
     {
         if(Config::get('facility.enroute') != null) {
-            $facilities = [ Config::get('facility.all_fields').', '.Config::Get('facility.enroute') ];
+            $fac = split(',', Config::get('facility.all_fields'));
+            array_push($fac, Config::get('facility.enroute'));
         } else {
-            $facilities = [ Config::get('facility.all_fields') ];
+            $fac = split(',', Config::get('facility.all_fields'));
+        }
+
+        $facilities = array();
+        foreach($fac as $f) {
+            $f = trim($f);
+            array_push($facilities, $f);
         }
 
 		$statsData = $this->getStatsData();
