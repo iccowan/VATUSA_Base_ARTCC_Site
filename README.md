@@ -7,6 +7,9 @@ Includes VATUSA API Integration
 
 Written by Ian Cowan, vZTL ARTCC Webmaster
 
+> ### 💡 _Please Note_
+> This repository is outdated and has been archived. You are still more than welcome to use it as a template, however, there are some integrations that no longer work. Additionally, it is highly recommended to update all packages before deploying into a live environment. If you would like an example of a more current, up-to-date version of the template that is being used in production, please go to [https://github.com/ZTL-ARTCC/Current_Website](https://github.com/ZTL-ARTCC/Current_Website).
+
 Prerequisites
 --------------
 - If you wish to have training scheduling, setmore will be required. You can create an account at [https://www.setmore.com/](https://www.setmore.com/).
